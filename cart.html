@@ -1,0 +1,95 @@
+<html>
+<head>
+    <title>My Cart</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+        img {
+            border-radius: 8px;
+        }
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        h2{
+            color: red;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><center><font size="12" color="Red">🛒 My Cart</font></center></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Preview</th>
+                <th>Product</th>
+                <th>Price (₹)</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody id="cartItems"></tbody>
+    </table>
+
+    <h2 id="totalPrice"></h2>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let tableBody = document.getElementById("cartItems");
+            let total = 0;
+            tableBody.innerHTML = ""; // clear old content
+
+            if (cart.length === 0) {
+                tableBody.innerHTML = "<tr><td colspan='4'>Your cart is empty</td></tr>";
+            } else {
+                cart.forEach((item, index) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td><img src="${item.image}" width="80"></td>
+                        <td>${item.product}</td>
+                        <td>₹${item.price}</td>
+                        <td><button onclick="removeFromCart(${index})">❌ Remove</button></td>
+                    `;
+                    tableBody.appendChild(row);
+                    total += item.price;
+                });
+            }
+
+            document.getElementById("totalPrice").innerText = "Total: ₹" + total;
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1); // remove item
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart(); // reload cart
+        }
+
+        // Load cart on page load
+        loadCart();
+    </script>
+
+</body>
+</html>

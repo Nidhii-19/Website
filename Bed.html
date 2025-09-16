@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title>Bed</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        button {
+            background-color: black;
+            border: 2px solid red;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button font {
+            color: red;
+        }
+    </style>
+</head>
+<body bgcolor="Black" alink="white" vlink="white" link="White">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr>
+    <td bgcolor="Red" colspan="2" width="100%">
+        &nbsp;&nbsp;&nbsp;&nbsp;<img src="Images/Logo.jpg" width="150">
+        <div align="right">
+            <font color="white" size="4">
+                <a href="Login.html">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><a href="cart.html" style="color:white;">🛒</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </font>
+        </div>
+        <div align="center">
+            <font color="White" name="Times New Roman" size="25"><b>Home Town</b></font><br>
+            <font color="white" size="12">The Art of Better Living</font>
+        </div>
+    </td>
+</tr>
+
+<tr height="45">
+    <td><font color="White" size="14"><center>New Arrival</center></font></td>
+</tr>
+
+<tr>
+    <td bgcolor="White" height="160">
+        <marquee width="100%" height="150" direction="left" behaviour="Scroll">
+            <img src="Images/Chair.jpg" height="150">
+            <img src="Images/Sofa.jpg" height="150">
+            <img src="Images/Table.jpeg" height="150" Width="250">
+            <img src="Images/Table2.jpeg" height="150">
+            <img src="Images/Table3.jpeg" height="150">
+            <img src="Images/Chair2.jpeg" height="150">
+            <img src="Images/Combo.jpeg" height="150" Width="250">
+            <img src="Images/Bed.jpg" height="150" Width="250">
+            <img src="Images/Office.jpeg" height="150" Width="250">
+        </marquee>
+    </td>
+</tr>
+
+<tr height="45"><td><font color="White" size="14"><center>Bed</center></font></td></tr>
+</table>
+
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr bgcolor="black">
+    <th><img src="Images/Bed1.jpeg" height="250" width="250" id="bed1img"></th>
+    <th><img src="Images/Bed.jpg" height="250" width="250" id="bed2img"></th>
+</tr>
+
+<tr bgcolor="black">
+    <td><center><font color="White" face="Arial" size="6" id="bed1name">
+        Magnum Engineered Wood King<br>Bed with Hydraulic Storage<br>in Urban Walnut Colour
+    </font></center></td>
+    <td><center><font color="White" face="Arial" size="6" id="bed2name">
+        Solid Sheesham Wood King Size<br>Bed for Bedroom
+    </font></center></td>
+</tr>
+
+<tr bgcolor="black">
+    <td><center><font color="Red" face="Arial" size="10" id="bed1price">38999</font></center></td>
+    <td><center><font color="Red" face="Arial" size="10" id="bed2price">42000</font></center></td>
+</tr>
+
+<tr bgcolor="black">
+    <td>
+        <center>
+            <button onclick="addToCart('bed1')">
+                <font color="Red" face="Arial" size="10">Add to cart</font>
+            </button>
+        </center>
+    </td>
+    <td>
+        <center>
+            <button onclick="addToCart('bed2')">
+                <font color="Red" face="Arial" size="10">Add to cart</font>
+            </button>
+        </center>
+    </td>
+</tr>
+
+<tr bgcolor="black">
+    <td><center><button><font color="Red" face="Arial" size="10">Buy now</font></button></center></td>
+    <td><center><button><font color="Red" face="Arial" size="10">Buy now</font></button></center></td>
+</tr>
+
+<tr bgcolor="Red">
+    <td width="100%" colspan="2">
+        <center><font size="12" color="White" face="Calisto MT">Contact Us</font></center>
+        <center><img src="Images/Insta.jpeg" width="40"><font color="White" size="5"> Hometown2206</font></center>
+        <center><img src="Images/Store.jpg" width="40"><font color="white" size="5"> Store Locator</font></center>
+        <center><img src="Images/Mail.jpg" width="40"><font color="white" size="5"> hometown2206@yahoo.in</font></center>
+    </td>
+</tr>
+</table>
+
+<!-- JavaScript for Cart with Image -->
+<script>
+function addToCart(id) {
+    let productName = document.getElementById(id + "name").innerText;
+    let productPrice = parseInt(document.getElementById(id + "price").innerText);
+    let productImage = document.getElementById(id + "img").src;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ product: productName, price: productPrice, image: productImage });
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(productName + " added to cart!");
+}
+</script>
+
+</body>
+</html>
